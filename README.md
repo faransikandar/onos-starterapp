@@ -54,12 +54,18 @@ python manage.py runserver
 - `GET /api/clients` - List all tenants
 - `GET /api/domains` - List all domains
 
-### Tenant API (Tenant-specific)
+### Client API (Tenant-specific)
 - `GET /client/{domain}/api/members` - List members
 - `POST /client/{domain}/api/members` - Create member
 - `GET /client/{domain}/api/members/{id}` - Get member detail
 - `PUT /client/{domain}/api/members/{id}` - Update member
 - `DELETE /client/{domain}/api/members/{id}` - Delete member
+
+### API docs:
+- `http://localhost:8000/api/docs` - Shared API docs
+- `http://localhost:8000/client/{domain}/api/docs` - Client API docs
+
+Note: The API docs support testing the API endpoints.
 
 ## Structure
 
@@ -67,17 +73,9 @@ python manage.py runserver
 - `tenant_app` - Contains tenant-specific models (e.g., Member) and api for each tenant schema
 - Django Ninja APIs in both apps
 
-## Notes
-
-- Access tenant app endpoints via tenant subfolder: `http://localhost:8000/client/tenant1/api/tenant/items`
-- Access shared app endpoints via base url: `http://localhost:8000/api/clients`
-- Tenant schemas are automatically created and migrated (auto_create_schema = True)
-
 ## Testing
 
 This project uses pytest for automated testing with test isolation between tenants.
-
-### Running Tests
 
 ```bash
 # Run all tests
@@ -86,3 +84,17 @@ pytest
 # Run specific test file
 pytest tenant_app/tests/test_integration_members.py
 ```
+
+## Additional Notes
+
+- Tenant schemas are automatically created and migrated when a Client is created (auto_create_schema = True)
+
+After modifying models in the tenant app, you can create and run migrations for all tenant schemas with the following commands:
+
+```bash
+python manage.py makemigrations
+python manage.py migrate_schemas --tenant
+python manage.py migrate_schemas --shared
+```
+
+
