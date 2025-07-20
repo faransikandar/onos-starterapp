@@ -1,9 +1,11 @@
 # Python virtual environments
 venv/
+venv-onos/
 env/
 ENV/
 .env/
 .venv/
+.python-version
 
 # Python bytecode
 __pycache__/
