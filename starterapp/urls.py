@@ -1,13 +1,12 @@
 from django.contrib import admin
 from django.urls import path
-# from tenant_app.api import api as tenant_api
-from shared_app.api import api as shared_api # Use the unified API instance
+from tenant_app.api import api as tenant_api
 from django.views import defaults as default_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('api/', shared_api.urls),
-]
+    path('api/', tenant_api.urls),
+] 
 
 # Define error handlers
 handler400 = default_views.bad_request

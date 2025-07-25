@@ -55,15 +55,15 @@ python manage.py runserver
 - `GET /api/domains` - List all domains
 
 ### Client API (Tenant-specific)
-- `GET /client/{domain}/region/{domain_region}/api/members` - List members
-- `POST /client/{domain}/region/{domain_region}/api/members` - Create member
-- `GET /client/{domain}/region/{domain_region}/api/members/{id}` - Get member detail
-- `PUT /client/{domain}/region/{domain_region}/api/members/{id}` - Update member
-- `DELETE /client/{domain}/region/{domain_region}/api/members/{id}` - Delete member
+- `GET /client/{domain}/api/members` - List members
+- `POST /client/{domain}/api/members` - Create member
+- `GET /client/{domain}/api/members/{id}` - Get member detail
+- `PUT /client/{domain}/api/members/{id}` - Update member
+- `DELETE /client/{domain}/api/members/{id}` - Delete member
 
 ### API docs:
 - `http://localhost:8000/api/docs` - Shared API docs
-- `http://localhost:8000/client/{domain}/region/{domain_region}/api/docs` - Client API docs
+- `http://localhost:8000/client/{domain}/api/docs` - Client API docs
 
 Note: The API docs support testing the API endpoints.
 
@@ -96,3 +96,5 @@ python manage.py makemigrations
 python manage.py migrate_schemas --tenant
 python manage.py migrate_schemas --shared
 ```
+
+
